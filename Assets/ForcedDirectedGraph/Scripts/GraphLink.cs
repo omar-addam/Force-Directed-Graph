@@ -33,6 +33,11 @@ namespace ForceDirectedGraph
             // Set color
             LineRenderer.startColor = link.Color;
             LineRenderer.endColor = link.Color;
+
+            // Set width
+            float width = link.Width == 0 ? 0 : link.Width * 0.08f + 0.02f; // [0.02 -> 0.1]
+            LineRenderer.startWidth = width;
+            LineRenderer.endWidth = width;
         }
 
         #endregion
