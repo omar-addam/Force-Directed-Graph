@@ -11,6 +11,14 @@ namespace ForceDirectedGraph
         #region Initialization
 
         /// <summary>
+        /// Executes once on start.
+        /// </summary>
+        private void Awake()
+        {
+            LineRenderer = GetComponent<LineRenderer>();
+        }
+
+        /// <summary>
         /// Initializes the graph entity.
         /// </summary>
         /// <param name="link">The link being presented.</param>
@@ -21,7 +29,6 @@ namespace ForceDirectedGraph
             _Link = link;
             FirstNode = firstNode;
             SecondNode = secondNode;
-            LineRenderer = GetComponent<LineRenderer>();
 
             // Set color
             LineRenderer.startColor = link.Color;
@@ -49,11 +56,13 @@ namespace ForceDirectedGraph
         /// <summary>
         /// The first graph node this entity is attached to.
         /// </summary>
+        [SerializeField]
         private GraphNode FirstNode;
 
         /// <summary>
         /// The second graph node this entity is attached to.
         /// </summary>
+        [SerializeField]
         private GraphNode SecondNode;
 
 
@@ -62,6 +71,20 @@ namespace ForceDirectedGraph
         /// References the line renderer that displays the link.
         /// </summary>
         private LineRenderer LineRenderer;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Update the line to keep the two nodes connected.
+        /// </summary>
+        private void Update()
+        {
+            LineRenderer.useWorldSpace = true;
+            LineRenderer.SetPosition(0, FirstNode.transform.position);
+            LineRenderer.SetPosition(1, SecondNode.transform.position);
+        }
 
         #endregion
 
