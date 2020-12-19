@@ -12,7 +12,7 @@ namespace ForceDirectedGraph
         /// <summary>
         /// Initializes the graph entity.
         /// </summary>
-        /// <param name="node">The node being presented</param>
+        /// <param name="node">The node being presented.</param>
         public void Initialize(Node node)
         {
             _Node = node;
