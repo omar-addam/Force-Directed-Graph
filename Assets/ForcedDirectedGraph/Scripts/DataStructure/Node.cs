@@ -42,7 +42,7 @@ namespace ForceDirectedGraph.DataStructure
         /// <summary>
         /// Clone constructor.
         /// </summary>
-        /// <param name="cluster">Instance to clone.</param>
+        /// <param name="node">Instance to clone.</param>
         public Node(Node node)
             : this(node.Id, node.Name, node.Color)
         {
