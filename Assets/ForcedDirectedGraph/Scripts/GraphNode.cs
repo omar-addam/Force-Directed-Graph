@@ -1,5 +1,6 @@
 ﻿using ForceDirectedGraph.DataStructure;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ForceDirectedGraph
 {
@@ -18,6 +19,9 @@ namespace ForceDirectedGraph
 
             // Set the color
             GetComponent<SpriteRenderer>().color = node.Color;
+
+            // Set name
+            GetComponent<Text>().text = node.Name;
         }
 
         #endregion
