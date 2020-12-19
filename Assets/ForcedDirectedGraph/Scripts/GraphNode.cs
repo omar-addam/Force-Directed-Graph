@@ -10,6 +10,14 @@ namespace ForceDirectedGraph
         #region Initialization
 
         /// <summary>
+        /// Executes once on start.
+        /// </summary>
+        private void Awake()
+        {
+            Rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        /// <summary>
         /// Initializes the graph entity.
         /// </summary>
         /// <param name="node">The node being presented.</param>
@@ -39,6 +47,19 @@ namespace ForceDirectedGraph
         /// The node being presented.
         /// </summary>
         public Node Node { get { return _Node; } }
+
+
+
+        /// <summary>
+        /// References the rigid body that handles the movements of the node.
+        /// </summary>
+        private Rigidbody2D Rigidbody;
+
+        #endregion
+
+        #region Draggable
+
+
 
         #endregion
 
