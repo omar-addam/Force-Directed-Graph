@@ -167,5 +167,25 @@ namespace ForceDirectedGraph
 
         #endregion
 
+        #region Force Methods
+
+        /// <summary>
+        /// Continuously apply forces to nodes.
+        /// </summary>
+        private void Update()
+        {
+            ApplyForces();
+        }
+
+        /// <summary>
+        /// Computes and applies forces to nodes.
+        /// </summary>
+        private void ApplyForces()
+        {
+
+        }
+
+        #endregion
+
     }
 }
