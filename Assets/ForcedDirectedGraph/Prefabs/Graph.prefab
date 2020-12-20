@@ -693,7 +693,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodesParent: {fileID: 6555719365606103874}
+  NoteTemplate: {fileID: 2220927836325485941, guid: b1078fcedb3abb54ab8c3202ef69ad74, type: 3}
   LinksParent: {fileID: 6555719367615510263}
+  LinkTemplate: {fileID: 890437199951002047, guid: 398829e3186185548bc7b192a484675b, type: 3}
 --- !u!1 &6555719367225352377
 GameObject:
   m_ObjectHideFlags: 0
