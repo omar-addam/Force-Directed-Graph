@@ -7,6 +7,18 @@ using UnityEngine;
 public class MainSceneManager : MonoBehaviour
 {
 
+    #region Initialization
+
+    /// <summary>
+    /// Executes once on start.
+    /// </summary>
+    private void Start()
+    {
+        GenerateSample1();        
+    }
+
+    #endregion
+
     #region Fields/Properties
 
     /// <summary>
