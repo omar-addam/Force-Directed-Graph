@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ForceDirectedGraph
@@ -120,6 +121,9 @@ namespace ForceDirectedGraph
 
             // Display links
             DisplayLinks();
+
+            // Apply force to a single node
+            GraphNodes.Values.ToList()[0].ApplyForces(new List<Vector2>() { Vector2.one }, true);
         }
 
         /// <summary>
