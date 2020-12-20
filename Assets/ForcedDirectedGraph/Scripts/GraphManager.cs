@@ -22,6 +22,8 @@ namespace ForceDirectedGraph
 
         #region Fields/Properties
 
+        [Header("Nodes")]
+
         /// <summary>
         /// References the parent holding all nodes.
         /// </summary>
@@ -38,6 +40,8 @@ namespace ForceDirectedGraph
 
 
 
+        [Header("Links")]
+
         /// <summary>
         /// References the parent holding all links.
         /// </summary>
@@ -53,6 +57,8 @@ namespace ForceDirectedGraph
         private GameObject LinkTemplate;
 
 
+
+        [Header("Data")]
 
         /// <summary>
         /// The netwok being displayed.
