@@ -13,12 +13,17 @@ namespace ForceDirectedGraph
         /// <summary>
         /// The repulsion force between any two nodes.
         /// </summary>
-        private const float REPULSION_FORCE = 0.1f;
+        private const float REPULSION_FORCE = 10f;
 
         /// <summary>
         /// The maximum distance for applying repulsion forces.
         /// </summary>
-        private const float REPULSION_DISTANCE = 3f;
+        private const float REPULSION_DISTANCE = 2f;
+
+        /// <summary>
+        /// The attraction force between any two nodes.
+        /// </summary>
+        private const float ATTRACTION_FORCE = 10f;
 
         #endregion
 
@@ -216,6 +221,14 @@ namespace ForceDirectedGraph
                     if (node1 != node2)
                         nodeForces[node1].Add(ComputeRepulsiveForce(node1, node2));
 
+            // Compute attraction forces
+            foreach (var link in GraphLinks)
+            {
+                var force = ComputeAttractionForce(link);
+                nodeForces[link.FirstNode].Add(-force);
+                nodeForces[link.SecondNode].Add(force);
+            }
+
             // Apply forces
             foreach (var node in nodeForces.Keys)
                 node.ApplyForces(nodeForces[node]);
@@ -253,6 +266,18 @@ namespace ForceDirectedGraph
 
             // Compute repulsive force
             return forceDirection * distanceForce * REPULSION_FORCE;
+        }
+
+        /// <summary>
+        /// Computes the attraction force between two nodes.
+        /// </summary>
+        private Vector2 ComputeAttractionForce(GraphLink link)
+        {
+            // Compute force direction
+            Vector2 forceDirection = (link.FirstNode.transform.position - link.SecondNode.transform.position).normalized;
+
+            // Compute repulsive force
+            return forceDirection * link.Link.Width * ATTRACTION_FORCE;
         }
 
         #endregion
