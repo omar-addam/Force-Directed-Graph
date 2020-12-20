@@ -16,6 +16,7 @@ namespace ForceDirectedGraph
         public void Initialize(DataStructure.Network network)
         {
             _Network = network;
+            Display();
         }
 
         #endregion
@@ -81,7 +82,19 @@ namespace ForceDirectedGraph
         /// </summary>
         private void Display()
         {
+            // Clear everything
+            Clear();
+        }
 
+        /// <summary>
+        /// Deletes all nodes and links in the graph.
+        /// </summary>
+        public void Clear()
+        {
+            foreach (Transform entity in NodesParent.transform)
+                GameObject.Destroy(entity.gameObject);
+            foreach (Transform path in LinksParent.transform)
+                GameObject.Destroy(path.gameObject);
         }
 
         #endregion
