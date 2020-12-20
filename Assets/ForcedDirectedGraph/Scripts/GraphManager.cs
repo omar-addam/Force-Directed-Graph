@@ -11,6 +11,25 @@ namespace ForceDirectedGraph
 
         #region Constants
 
+#if !UNITY_EDITOR && UNITY_WEBGL
+
+        /// <summary>
+        /// The repulsion force between any two nodes.
+        /// </summary>
+        private const float REPULSION_FORCE = 600f;
+
+        /// <summary>
+        /// The maximum distance for applying repulsion forces.
+        /// </summary>
+        private const float REPULSION_DISTANCE = 15f;
+
+        /// <summary>
+        /// The attraction force between any two nodes.
+        /// </summary>
+        private const float ATTRACTION_FORCE = 600f;
+
+#else
+
         /// <summary>
         /// The repulsion force between any two nodes.
         /// </summary>
@@ -25,6 +44,8 @@ namespace ForceDirectedGraph
         /// The attraction force between any two nodes.
         /// </summary>
         private const float ATTRACTION_FORCE = 60f;
+
+#endif
 
         #endregion
 
