@@ -57,11 +57,5 @@ namespace ForceDirectedGraph
 
         #endregion
 
-        #region Draggable
-
-
-
-        #endregion
-
     }
 }
