@@ -143,8 +143,8 @@ namespace ForceDirectedGraph
             // Display links
             DisplayLinks();
 
-            // Apply force to a single node
-            GraphNodes.Values.ToList()[0].ApplyForces(new List<Vector2>() { Vector2.one }, true);
+            // Shuffle the nodes
+            ShuffleNodes();
         }
 
         /// <summary>
@@ -216,6 +216,16 @@ namespace ForceDirectedGraph
                 // Add to list
                 GraphLinks.Add(script);
             }
+        }
+
+        /// <summary>
+        /// Shuffles the nodes randomly.
+        /// </summary>
+        private void ShuffleNodes()
+        {
+            System.Random random = new System.Random();
+            foreach (var node in GraphNodes.Values)
+                node.ApplyForces(new List<Vector2>() { new Vector2(random.Next(-10, 10) / 10f, random.Next(-10, 10) / 10f) }, true);
         }
 
         #endregion
