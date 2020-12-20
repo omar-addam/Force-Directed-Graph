@@ -9,10 +9,21 @@ namespace ForceDirectedGraph
 
         #region Constants
 
+#if !UNITY_EDITOR && UNITY_WEBGL
+
+        /// <summary>
+        /// Force applied when dragging objects.
+        /// </summary>
+        private const float DRAGGING_FORCE = 100f;
+
+#else
+
         /// <summary>
         /// Force applied when dragging objects.
         /// </summary>
         private const float DRAGGING_FORCE = 10f;
+
+#endif
 
         #endregion
 
