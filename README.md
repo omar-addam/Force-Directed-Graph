@@ -37,11 +37,28 @@ git clone https://github.com/omaddam/Force-Directed-Graph.git
 git flow init
 ```
 
-# How to use this visualization in my project?
+# How to use this visualization in your project?
 
-1) Add Graph.prefab into your scene and reference it in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
+## 1. Add prefab
+Add Graph.prefab into your scene and reference it in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
 
 ![Simulation](docs/Step1.png)
+
+## 2. Prepare data
+Create a `ForceDirectedGraph.DataStructure.Network` instance and populate it with the nodes and links.
+
+Every node has the following fields:
+* Unique identifier
+* Display name
+* Color
+
+Every link has the following fields:
+* Id of the first node
+* Id of the second node
+* Width `[0-1]` representing the strength of the connection between the two nodes
+* Color
+
+![Simulation](docs/Step2.png)
 
 # Standards
 
