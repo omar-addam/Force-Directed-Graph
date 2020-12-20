@@ -27,8 +27,8 @@ namespace ForceDirectedGraph
         public void Initialize(Link link, GraphNode firstNode, GraphNode secondNode)
         {
             _Link = link;
-            FirstNode = firstNode;
-            SecondNode = secondNode;
+            _FirstNode = firstNode;
+            _SecondNode = secondNode;
 
             // Set color
             LineRenderer.startColor = link.Color;
@@ -62,13 +62,25 @@ namespace ForceDirectedGraph
         /// The first graph node this entity is attached to.
         /// </summary>
         [SerializeField]
-        private GraphNode FirstNode;
+        private GraphNode _FirstNode;
+
+        /// <summary>
+        /// The first graph node this entity is attached to.
+        /// </summary>
+        public GraphNode FirstNode { get { return _FirstNode; } }
+
+
 
         /// <summary>
         /// The second graph node this entity is attached to.
         /// </summary>
         [SerializeField]
-        private GraphNode SecondNode;
+        private GraphNode _SecondNode;
+
+        /// <summary>
+        /// The second graph node this entity is attached to.
+        /// </summary>
+        public GraphNode SecondNode { get { return _SecondNode; } }
 
 
 
@@ -88,8 +100,8 @@ namespace ForceDirectedGraph
         {
             LineRenderer.useWorldSpace = true;
 
-            Vector3 firstPosition = FirstNode.transform.position + (SecondNode.transform.position - FirstNode.transform.position).normalized * 0.1f;
-            Vector3 secondPosition = SecondNode.transform.position + (FirstNode.transform.position - SecondNode.transform.position).normalized * 0.1f;
+            Vector3 firstPosition = _FirstNode.transform.position + (_SecondNode.transform.position - _FirstNode.transform.position).normalized * 0.1f;
+            Vector3 secondPosition = _SecondNode.transform.position + (_FirstNode.transform.position - _SecondNode.transform.position).normalized * 0.1f;
 
             LineRenderer.SetPosition(0, firstPosition);
             LineRenderer.SetPosition(1, secondPosition);

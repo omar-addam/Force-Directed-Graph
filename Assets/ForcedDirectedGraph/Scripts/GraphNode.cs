@@ -1,4 +1,5 @@
 ﻿using ForceDirectedGraph.DataStructure;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,9 +66,24 @@ namespace ForceDirectedGraph
         /// </summary>
         private Draggable Draggable;
 
+
+
+        /// <summary>
+        /// List of all forces to apply.
+        /// </summary>
+        private List<Vector2> Forces;
+
         #endregion
 
         #region Movement
+
+        /// <summary>
+        /// Apply forces to the node.
+        /// </summary>
+        public void ApplyForces(List<Vector2> forces)
+        {
+            Forces = forces;
+        }
 
         /// <summary>
         /// Updates the forces applied to the node.
@@ -84,6 +100,9 @@ namespace ForceDirectedGraph
             else
             {
                 Rigidbody.velocity = Vector3.zero;
+
+                foreach (var force in Forces)
+                    Rigidbody.AddForce(force);
             }
         }
 

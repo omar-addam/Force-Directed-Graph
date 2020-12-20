@@ -8,6 +8,25 @@ namespace ForceDirectedGraph
     public class GraphManager : MonoBehaviour
     {
 
+        #region Constants
+
+        /// <summary>
+        /// The repulsion force between any two nodes.
+        /// </summary>
+        private const float REPULSION_FORCE = 10f;
+
+        /// <summary>
+        /// The maximum distance for applying repulsion forces.
+        /// </summary>
+        private const float REPULSION_DISTANCE = 2f;
+
+        /// <summary>
+        /// The attraction force between any two nodes.
+        /// </summary>
+        private const float ATTRACTION_FORCE = 10f;
+
+        #endregion
+
         #region Initialization
 
         /// <summary>
@@ -63,6 +82,11 @@ namespace ForceDirectedGraph
         [Tooltip("Template used for initiating links.")]
         private GameObject LinkTemplate;
 
+        /// <summary>
+        /// List of all links displayed on the graph.
+        /// </summary>
+        private List<GraphLink> GraphLinks;
+
 
 
         [Header("Data")]
@@ -109,6 +133,7 @@ namespace ForceDirectedGraph
                 GameObject.Destroy(entity.gameObject);
 
             // Clear paths
+            GraphLinks = new List<GraphLink>();
             foreach (Transform path in LinksParent.transform)
                 GameObject.Destroy(path.gameObject);
         }
@@ -162,7 +187,97 @@ namespace ForceDirectedGraph
 
                 // Initialize data
                 script.Initialize(link, firstNode, secondNode);
+
+                // Add to list
+                GraphLinks.Add(script);
             }
+        }
+
+        #endregion
+
+        #region Force Methods
+
+        /// <summary>
+        /// Continuously apply forces to nodes.
+        /// </summary>
+        private void Update()
+        {
+            ApplyForces();
+        }
+
+        /// <summary>
+        /// Computes and applies forces to nodes.
+        /// </summary>
+        private void ApplyForces()
+        {
+            // Stores all the forces to be applied to each node
+            Dictionary<GraphNode, List<Vector2>> nodeForces = new Dictionary<GraphNode, List<Vector2>>();
+            foreach (var node1 in GraphNodes.Values)
+                nodeForces.Add(node1, new List<Vector2>());
+
+            // Compute repulsion forces
+            foreach (var node1 in GraphNodes.Values)
+                foreach (var node2 in GraphNodes.Values)
+                    if (node1 != node2)
+                        nodeForces[node1].Add(ComputeRepulsiveForce(node1, node2));
+
+            // Compute attraction forces
+            foreach (var link in GraphLinks)
+            {
+                var force = ComputeAttractionForce(link);
+                nodeForces[link.FirstNode].Add(-force);
+                nodeForces[link.SecondNode].Add(force);
+            }
+
+            // Apply forces
+            foreach (var node in nodeForces.Keys)
+                node.ApplyForces(nodeForces[node]);
+        }
+
+        /// <summary>
+        /// Computes the distance between two nodes.
+        /// </summary>
+        private float ComputeDistance(GraphNode node1, GraphNode node2)
+        {
+            return (float)
+                Math.Sqrt
+                (
+                    Math.Pow(node1.transform.position.x - node2.transform.position.x, 2)
+                    +
+                    Math.Pow(node1.transform.position.y - node2.transform.position.y, 2)
+                );
+        }
+
+        /// <summary>
+        /// Computes the repulsive force against a node.
+        /// </summary>
+        private Vector2 ComputeRepulsiveForce(GraphNode node, GraphNode repulsiveNode)
+        {
+            // Compute distance
+            float distance = ComputeDistance(node, repulsiveNode);
+            if (distance > REPULSION_DISTANCE)
+                return Vector3.zero;
+
+            // Compute force direction
+            Vector2 forceDirection = (node.transform.position - repulsiveNode.transform.position).normalized;
+
+            // Compute distance force
+            float distanceForce = (REPULSION_DISTANCE - distance) / REPULSION_DISTANCE;
+
+            // Compute repulsive force
+            return forceDirection * distanceForce * REPULSION_FORCE;
+        }
+
+        /// <summary>
+        /// Computes the attraction force between two nodes.
+        /// </summary>
+        private Vector2 ComputeAttractionForce(GraphLink link)
+        {
+            // Compute force direction
+            Vector2 forceDirection = (link.FirstNode.transform.position - link.SecondNode.transform.position).normalized;
+
+            // Compute repulsive force
+            return forceDirection * link.Link.Width * ATTRACTION_FORCE;
         }
 
         #endregion
