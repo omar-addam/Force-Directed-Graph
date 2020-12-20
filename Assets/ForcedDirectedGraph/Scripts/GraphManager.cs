@@ -77,6 +77,11 @@ namespace ForceDirectedGraph
         [Tooltip("Template used for initiating links.")]
         private GameObject LinkTemplate;
 
+        /// <summary>
+        /// List of all links displayed on the graph.
+        /// </summary>
+        private List<GraphLink> GraphLinks;
+
 
 
         [Header("Data")]
@@ -123,6 +128,7 @@ namespace ForceDirectedGraph
                 GameObject.Destroy(entity.gameObject);
 
             // Clear paths
+            GraphLinks = new List<GraphLink>();
             foreach (Transform path in LinksParent.transform)
                 GameObject.Destroy(path.gameObject);
         }
@@ -176,6 +182,9 @@ namespace ForceDirectedGraph
 
                 // Initialize data
                 script.Initialize(link, firstNode, secondNode);
+
+                // Add to list
+                GraphLinks.Add(script);
             }
         }
 
@@ -205,10 +214,7 @@ namespace ForceDirectedGraph
             foreach (var node1 in GraphNodes.Values)
                 foreach (var node2 in GraphNodes.Values)
                     if (node1 != node2)
-                    {
-                        // Compute repulsion
                         nodeForces[node1].Add(ComputeRepulsiveForce(node1, node2));
-                    }
 
             // Apply forces
             foreach (var node in nodeForces.Keys)
