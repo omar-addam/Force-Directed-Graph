@@ -15,6 +15,11 @@ namespace ForceDirectedGraph
         private void Awake()
         {
             Rigidbody = GetComponent<Rigidbody2D>();
+            Draggable = GetComponent<Draggable>();
+
+            // Freeze rotation
+            Rigidbody.angularVelocity = 0;
+            Rigidbody.freezeRotation = true;
         }
 
         /// <summary>
@@ -54,6 +59,33 @@ namespace ForceDirectedGraph
         /// References the rigid body that handles the movements of the node.
         /// </summary>
         private Rigidbody2D Rigidbody;
+
+        /// <summary>
+        /// References the draggable script that will notify us if the node is being dragged.
+        /// </summary>
+        private Draggable Draggable;
+
+        #endregion
+
+        #region Movement
+
+        /// <summary>
+        /// Updates the forces applied to the node.
+        /// </summary>
+        private void Update()
+        {
+            // Check if the object is being dragged
+            if (Draggable.IsBeingDragged)
+            {
+                // Do nothing
+            }
+
+            // The object is not being dragged
+            else
+            {
+                Rigidbody.velocity = Vector3.zero;
+            }
+        }
 
         #endregion
 
