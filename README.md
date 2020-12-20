@@ -40,7 +40,7 @@ git flow init
 # How to use this visualization in your project?
 
 ### 1. Add prefab
-Add Graph.prefab into your scene and reference it in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
+Add Graph.prefab into your scene and reference its manager in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
 
 ![Simulation](docs/Step1.png)
 
@@ -78,6 +78,21 @@ network.Links.Add(new DataStructure.Link(
     network.Nodes[0].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 1 -> Item 3
 network.Links.Add(new DataStructure.Link(
     network.Nodes[1].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 2 -> Item 3
+```
+
+### 3. Visualize network
+Used the referenced graph manager to visualize the network.
+
+```C#
+/// <summary>
+/// The graph displaying the network.
+/// </summary>
+[SerializeField]
+[Tooltip("The graph displaying the network.")]
+private GraphManager Graph;
+
+// Display network
+Graph.Initialize(network);
 ```
 
 # Standards
