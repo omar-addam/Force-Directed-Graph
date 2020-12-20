@@ -104,7 +104,7 @@ namespace ForceDirectedGraph
         private void Clear()
         {
             // Clear nodes
-            GraphNodes = new Dictionary<string, GraphNode>();
+            GraphNodes = new Dictionary<Guid, GraphNode>();
             foreach (Transform entity in NodesParent.transform)
                 GameObject.Destroy(entity.gameObject);
 
