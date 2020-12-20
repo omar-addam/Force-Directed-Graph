@@ -21,7 +21,7 @@ namespace ForceDirectedGraph
         /// <summary>
         /// The maximum distance for applying repulsion forces.
         /// </summary>
-        private const float REPULSION_DISTANCE = 15f;
+        private const float REPULSION_DISTANCE = 1.5f;
 
         /// <summary>
         /// The attraction force between any two nodes.
