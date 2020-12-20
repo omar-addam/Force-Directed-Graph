@@ -11,6 +11,25 @@ namespace ForceDirectedGraph
 
         #region Constants
 
+#if !UNITY_EDITOR && UNITY_WEBGL
+
+        /// <summary>
+        /// The repulsion force between any two nodes.
+        /// </summary>
+        private const float REPULSION_FORCE = 600f;
+
+        /// <summary>
+        /// The maximum distance for applying repulsion forces.
+        /// </summary>
+        private const float REPULSION_DISTANCE = 1.5f;
+
+        /// <summary>
+        /// The attraction force between any two nodes.
+        /// </summary>
+        private const float ATTRACTION_FORCE = 600f;
+
+#else
+
         /// <summary>
         /// The repulsion force between any two nodes.
         /// </summary>
@@ -25,6 +44,8 @@ namespace ForceDirectedGraph
         /// The attraction force between any two nodes.
         /// </summary>
         private const float ATTRACTION_FORCE = 60f;
+
+#endif
 
         #endregion
 
@@ -122,8 +143,8 @@ namespace ForceDirectedGraph
             // Display links
             DisplayLinks();
 
-            // Apply force to a single node
-            GraphNodes.Values.ToList()[0].ApplyForces(new List<Vector2>() { Vector2.one }, true);
+            // Shuffle the nodes
+            ShuffleNodes();
         }
 
         /// <summary>
@@ -195,6 +216,16 @@ namespace ForceDirectedGraph
                 // Add to list
                 GraphLinks.Add(script);
             }
+        }
+
+        /// <summary>
+        /// Shuffles the nodes randomly.
+        /// </summary>
+        private void ShuffleNodes()
+        {
+            System.Random random = new System.Random();
+            foreach (var node in GraphNodes.Values)
+                node.ApplyForces(new List<Vector2>() { new Vector2(random.Next(-10, 10) / 10f, random.Next(-10, 10) / 10f) }, true);
         }
 
         #endregion
