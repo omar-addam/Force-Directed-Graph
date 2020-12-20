@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,11 @@ namespace ForceDirectedGraph
         [SerializeField]
         [Tooltip("Template used for initiating nodes.")]
         private GameObject NoteTemplate;
+
+        /// <summary>
+        /// List of all nodes displayed on the graph.
+        /// </summary>
+        private Dictionary<Guid, GraphNode> GraphNodes;
 
 
 
@@ -94,8 +100,12 @@ namespace ForceDirectedGraph
         /// </summary>
         private void Clear()
         {
+            // Clear nodes
+            GraphNodes = new Dictionary<string, GraphNode>();
             foreach (Transform entity in NodesParent.transform)
                 GameObject.Destroy(entity.gameObject);
+
+            // Clear paths
             foreach (Transform path in LinksParent.transform)
                 GameObject.Destroy(path.gameObject);
         }
@@ -118,6 +128,9 @@ namespace ForceDirectedGraph
 
                 // Initialize data
                 script.Initialize(node);
+
+                // Add to list
+                GraphNodes?.Add(node.Id, script);
             }
         }
 
