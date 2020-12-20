@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainSceneManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MainSceneManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        DisplayVersion();
         GenerateSample1();        
     }
 
@@ -28,9 +30,24 @@ public class MainSceneManager : MonoBehaviour
     [Tooltip("The graph displaying the network.")]
     private GraphManager Graph;
 
+    /// <summary>
+    /// Text UI element displaying the version of the project.
+    /// </summary>
+    [SerializeField]
+    [Tooltip("Text UI element displaying the version of the project.")]
+    private Text Version;
+
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// Displays current project's version.
+    /// </summary>
+    private void DisplayVersion()
+    {
+        Version.text = string.Format("Version: {0}",  Application.version);
+    }
 
     /// <summary>
     /// Generates a network sample and displays it on the graph.
