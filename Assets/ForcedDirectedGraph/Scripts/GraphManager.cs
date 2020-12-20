@@ -93,6 +93,9 @@ namespace ForceDirectedGraph
 
             // Display nodes
             DisplayNodes();
+
+            // Display links
+            DisplayLinks();
         }
 
         /// <summary>
@@ -131,6 +134,34 @@ namespace ForceDirectedGraph
 
                 // Add to list
                 GraphNodes?.Add(node.Id, script);
+            }
+        }
+
+        /// <summary>
+        /// Displays links on the graph.
+        /// </summary>
+        private void DisplayLinks()
+        {
+            // For each position, create an entity
+            foreach (var link in Network?.Links)
+            {
+                // Find graph nodes
+                if (!GraphNodes.ContainsKey(link.FirstNodeId)
+                    || !GraphNodes.ContainsKey(link.SecondNodeId))
+                    continue;
+                GraphNode firstNode = GraphNodes?[link.FirstNodeId];
+                GraphNode secondNode = GraphNodes?[link.SecondNodeId];
+
+                // Create a new entity instance
+                GameObject graphLink = Instantiate(LinkTemplate, LinksParent.transform);
+                graphLink.transform.position = Vector3.zero;
+                graphLink.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+                // Extract the script
+                GraphLink script = graphLink.GetComponent<GraphLink>();
+
+                // Initialize data
+                script.Initialize(link, firstNode, secondNode);
             }
         }
 
