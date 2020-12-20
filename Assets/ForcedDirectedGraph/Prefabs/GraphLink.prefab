@@ -142,3 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58079a4b08bb89640bde0c0098aec3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Link:
+    _Width: 0
+    _Color: {r: 0, g: 0, b: 0, a: 0}
+  FirstNode: {fileID: 0}
+  SecondNode: {fileID: 0}

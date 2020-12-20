@@ -34,7 +34,7 @@ namespace ForceDirectedGraph
             GetComponent<SpriteRenderer>().color = node.Color;
 
             // Set name
-            GetComponent<Text>().text = node.Name;
+            GetComponentInChildren<Text>().text = node.Name;
         }
 
         #endregion

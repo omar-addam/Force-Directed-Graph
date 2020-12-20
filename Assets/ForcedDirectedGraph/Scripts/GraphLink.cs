@@ -87,8 +87,12 @@ namespace ForceDirectedGraph
         private void Update()
         {
             LineRenderer.useWorldSpace = true;
-            LineRenderer.SetPosition(0, FirstNode.transform.position);
-            LineRenderer.SetPosition(1, SecondNode.transform.position);
+
+            Vector3 firstPosition = FirstNode.transform.position + (SecondNode.transform.position - FirstNode.transform.position).normalized * 0.1f;
+            Vector3 secondPosition = SecondNode.transform.position + (FirstNode.transform.position - SecondNode.transform.position).normalized * 0.1f;
+
+            LineRenderer.SetPosition(0, firstPosition);
+            LineRenderer.SetPosition(1, secondPosition);
         }
 
         #endregion
