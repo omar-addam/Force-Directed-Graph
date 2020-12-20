@@ -37,6 +37,12 @@ git clone https://github.com/omaddam/Force-Directed-Graph.git
 git flow init
 ```
 
+# How to use this visualization in my project?
+
+1) Add Graph.prefab into your scene and reference it in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
+
+![Simulation](docs/Step1.png)
+
 # Standards
 
 ### General Standards
