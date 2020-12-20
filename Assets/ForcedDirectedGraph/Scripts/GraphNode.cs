@@ -80,9 +80,14 @@ namespace ForceDirectedGraph
         /// <summary>
         /// Apply forces to the node.
         /// </summary>
-        public void ApplyForces(List<Vector2> forces)
+        /// <param name="applyImmediately">States whether we should apply the forces immediately or wait till the next frame.</param>
+        public void ApplyForces(List<Vector2> forces, bool applyImmediately = false)
         {
-            Forces = forces;
+            if (applyImmediately)
+                foreach (var force in forces)
+                    Rigidbody.AddForce(force);
+            else
+                Forces = forces;
         }
 
         /// <summary>
