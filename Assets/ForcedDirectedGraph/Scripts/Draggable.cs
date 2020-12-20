@@ -7,6 +7,15 @@ namespace ForceDirectedGraph
     public class Draggable : MonoBehaviour
     {
 
+        #region Constants
+
+        /// <summary>
+        /// Force applied when dragging objects.
+        /// </summary>
+        private const float DRAGGING_FORCE = 10f;
+
+        #endregion
+
         #region Initialization
 
         /// <summary>
@@ -67,7 +76,7 @@ namespace ForceDirectedGraph
 
             // Get the force vector
             Vector3 force = mousePosition - transform.position;
-            force *= 10f;
+            force *= DRAGGING_FORCE;
 
             // Apply force
             Rigidbody.velocity = Vector3.zero;
