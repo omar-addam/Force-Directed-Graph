@@ -30,11 +30,27 @@ namespace ForceDirectedGraph
         private GameObject NodesParent;
 
         /// <summary>
+        /// Template used for initiating nodes.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Template used for initiating nodes.")]
+        private GameObject NoteTemplate;
+
+
+
+        /// <summary>
         /// References the parent holding all links.
         /// </summary>
         [SerializeField]
         [Tooltip("References the parent holding all links.")]
         private GameObject LinksParent;
+
+        /// <summary>
+        /// Template used for initiating links.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Template used for initiating links.")]
+        private GameObject LinkTemplate;
 
 
 
@@ -49,6 +65,18 @@ namespace ForceDirectedGraph
         /// The netwok being displayed.
         /// </summary>
         public DataStructure.Network Network { get { return _Network; } }
+
+        #endregion
+
+        #region Display Methods
+
+        /// <summary>
+        /// Displays the network.
+        /// </summary>
+        private void Display()
+        {
+
+        }
 
         #endregion
 
