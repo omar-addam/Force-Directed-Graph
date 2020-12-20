@@ -16,7 +16,7 @@ public class MainSceneManager : MonoBehaviour
     private void Start()
     {
         DisplayVersion();
-        GenerateSample1();        
+        GenerateSample();        
     }
 
     #endregion
@@ -52,7 +52,7 @@ public class MainSceneManager : MonoBehaviour
     /// <summary>
     /// Generates a network sample and displays it on the graph.
     /// </summary>
-    private void GenerateSample1()
+    public void GenerateSample()
     {
         // Start a new network
         ForceDirectedGraph.DataStructure.Network network = new ForceDirectedGraph.DataStructure.Network();
