@@ -39,12 +39,12 @@ git flow init
 
 # How to use this visualization in your project?
 
-## 1. Add prefab
+### 1. Add prefab
 Add Graph.prefab into your scene and reference it in your script. `The prefab can be found under Assets/ForceDirectedGraph/Prefabs.`
 
 ![Simulation](docs/Step1.png)
 
-## 2. Prepare data
+### 2. Prepare data
 Create a `ForceDirectedGraph.DataStructure.Network` instance and populate it with the nodes and links.
 
 Every node has the following fields:
@@ -58,7 +58,27 @@ Every link has the following fields:
 * Width `[0-1]` representing the strength of the connection between the two nodes
 * Color
 
-![Simulation](docs/Step2.png)
+```C#
+using ForceDirectedGraph;
+using UnityEngine;
+using System;
+
+// Create network
+DataStructure.Network network = new DataStructure.Network();
+
+// Add nodes
+network.Nodes.Add(new DataStructure.Node(Guid.NewGuid(), "Item 1", Color.red));
+network.Nodes.Add(new DataStructure.Node(Guid.NewGuid(), "Item 2", Color.blue));
+network.Nodes.Add(new DataStructure.Node(Guid.NewGuid(), "Item 3", Color.green));
+
+// Add links
+network.Links.Add(new DataStructure.Link(
+    network.Nodes[0].Id, network.Nodes[1].Id, 0.5f, Color.white)); // Item 1 -> Item 2
+network.Links.Add(new DataStructure.Link(
+    network.Nodes[0].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 1 -> Item 3
+network.Links.Add(new DataStructure.Link(
+    network.Nodes[1].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 2 -> Item 3
+```
 
 # Standards
 
