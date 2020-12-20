@@ -84,17 +84,41 @@ namespace ForceDirectedGraph
         {
             // Clear everything
             Clear();
+
+            // Display nodes
+            DisplayNodes();
         }
 
         /// <summary>
         /// Deletes all nodes and links in the graph.
         /// </summary>
-        public void Clear()
+        private void Clear()
         {
             foreach (Transform entity in NodesParent.transform)
                 GameObject.Destroy(entity.gameObject);
             foreach (Transform path in LinksParent.transform)
                 GameObject.Destroy(path.gameObject);
+        }
+
+        /// <summary>
+        /// Displays nodes on the graph.
+        /// </summary>
+        private void DisplayNodes()
+        {
+            // For each position, create an entity
+            foreach (var node in Network?.Nodes)
+            {
+                // Create a new entity instance
+                GameObject graphNode = Instantiate(NoteTemplate, NodesParent.transform);
+                graphNode.transform.position = Vector3.zero;
+                graphNode.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+                // Extract the script
+                GraphNode script = graphNode.GetComponent<GraphNode>();
+
+                // Initialize data
+                script.Initialize(node);
+            }
         }
 
         #endregion
