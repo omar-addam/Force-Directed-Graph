@@ -60,12 +60,10 @@ public class MainSceneManager : MonoBehaviour
         // Start a new network
         ForceDirectedGraph.DataStructure.Network network = new ForceDirectedGraph.DataStructure.Network();
 
-        // Add nodes ---------------------------------------------------
+        // Add a triangle network
+        GenerateTriangleSample(network);
 
-        // Triangle
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 1", Color.red));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 2", Color.blue));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 3", Color.green));
+        // Add nodes ---------------------------------------------------
 
         // Center
         network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 4", Color.white));
@@ -89,11 +87,6 @@ public class MainSceneManager : MonoBehaviour
 
 
         // Add links ---------------------------------------------------
-
-        // Triangle
-        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[0].Id, network.Nodes[1].Id, 0.5f, Color.white)); // Item 1 -> Item 2
-        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[0].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 1 -> Item 3
-        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[1].Id, network.Nodes[2].Id, 0.5f, Color.white)); // Item 2 -> Item 3
 
         // Center
         network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[3].Id, network.Nodes[4].Id, 0.7f, Color.white)); // Item 4 -> Item 5
@@ -123,6 +116,28 @@ public class MainSceneManager : MonoBehaviour
 
         // Display network
         Graph.Initialize(network);
+    }
+
+    /// <summary>
+    /// Generates items and connects them together to form a triangle.
+    /// </summary>
+    /// <param name="network">The network used to append the items and links to.</param>
+    private void GenerateTriangleSample(ForceDirectedGraph.DataStructure.Network network)
+    {
+        // Create items
+        ForceDirectedGraph.DataStructure.Node item1 = new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 1", Color.red);
+        ForceDirectedGraph.DataStructure.Node item2 = new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 2", Color.blue);
+        ForceDirectedGraph.DataStructure.Node item3 = new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "Item 3", Color.green);
+
+        // Add items to network
+        network.Nodes.Add(item1);
+        network.Nodes.Add(item2);
+        network.Nodes.Add(item3);
+
+        // Create links and add to network
+        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(item1.Id, item2.Id, 0.5f, Color.white)); // Item 1 -> Item 2
+        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(item1.Id, item3.Id, 0.5f, Color.white)); // Item 1 -> Item 3
+        network.Links.Add(new ForceDirectedGraph.DataStructure.Link(item2.Id, item3.Id, 0.5f, Color.white)); // Item 2 -> Item 3
     }
 
     #endregion
