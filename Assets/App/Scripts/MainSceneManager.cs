@@ -66,50 +66,18 @@ public class MainSceneManager : MonoBehaviour
         // Add a center network
         GenerateCenterSample(network);
 
-        // Add nodes ---------------------------------------------------
+        // Add a sqaure network
+        GenerateSample(network, 4);
 
-        // Star
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-
-        // Square
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-        network.Nodes.Add(new ForceDirectedGraph.DataStructure.Node(Guid.NewGuid(), "", Color.grey));
-
-
-        // Add links ---------------------------------------------------
-
-        //// Star
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[8].Id, network.Nodes[9].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[8].Id, network.Nodes[10].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[8].Id, network.Nodes[11].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[8].Id, network.Nodes[12].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[9].Id, network.Nodes[10].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[9].Id, network.Nodes[11].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[9].Id, network.Nodes[12].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[10].Id, network.Nodes[11].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[10].Id, network.Nodes[12].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[11].Id, network.Nodes[12].Id, 0.2f, Color.white));
-
-        //// Square
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[13].Id, network.Nodes[14].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[13].Id, network.Nodes[15].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[13].Id, network.Nodes[16].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[14].Id, network.Nodes[15].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[14].Id, network.Nodes[16].Id, 0.2f, Color.white));
-        //network.Links.Add(new ForceDirectedGraph.DataStructure.Link(network.Nodes[15].Id, network.Nodes[16].Id, 0.2f, Color.white));
+        // Add a star network
+        GenerateSample(network, 5);
 
         // Display network
         Graph.Initialize(network);
     }
 
     /// <summary>
-    /// Generates node and connects them together to form a triangle.
+    /// Generates nodes and connects them together to form a triangle.
     /// </summary>
     /// <param name="network">The network used to append the items and links to.</param>
     private void GenerateTriangleSample(ForceDirectedGraph.DataStructure.Network network)
@@ -131,7 +99,7 @@ public class MainSceneManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates node and connects them all to a center node.
+    /// Generates nodes and connects them all to a center node.
     /// </summary>
     /// <param name="network">The network used to append the items and links to.</param>
     private void GenerateCenterSample(ForceDirectedGraph.DataStructure.Network network)
@@ -156,6 +124,32 @@ public class MainSceneManager : MonoBehaviour
         for (int i = 1; i < nodes.Count; i++)
             network.Links.Add(new ForceDirectedGraph.DataStructure.Link(nodes[0].Id, nodes[i].Id, i == 1 ? 0.7f : 0.2f, Color.white));
 
+    }
+
+    /// <summary>
+    /// Generates nodes and connects them all together.
+    /// </summary>
+    /// <param name="network">The network used to append the items and links to.</param>
+    /// <param name="count">Number of nodes to add.</param>
+    private void GenerateSample(ForceDirectedGraph.DataStructure.Network network, int count)
+    {
+        // Create nodes
+        List<ForceDirectedGraph.DataStructure.Node> nodes = new List<ForceDirectedGraph.DataStructure.Node>();
+        for (int i = 0; i < count; i++)
+            nodes.Add(new ForceDirectedGraph.DataStructure.Node
+            (
+                id: Guid.NewGuid(),
+                name: string.Empty,
+                color: Color.grey
+            ));
+
+        // Add nodes to graph
+        network.Nodes.AddRange(nodes);
+
+        // Create links and add to network
+        for (int i = 0; i < nodes.Count - 1; i++)
+            for (int j = i + 1; j < nodes.Count; j++)
+                network.Links.Add(new ForceDirectedGraph.DataStructure.Link(nodes[i].Id, nodes[j].Id, 0.2f, Color.white));
     }
 
     #endregion
