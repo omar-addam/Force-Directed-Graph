@@ -8,6 +8,15 @@ namespace ForceDirectedGraph
     public class GraphNode : MonoBehaviour
     {
 
+        #region Constants
+
+        /// <summary>
+        /// The maximum value the node's velocity can be at any time.
+        /// </summary>
+        private const float MAX_VELOCITY_MAGNITUDE = 500f;
+
+        #endregion
+
         #region Initialization
 
         /// <summary>
@@ -111,7 +120,7 @@ namespace ForceDirectedGraph
                     foreach (var force in Forces)
                         velocity += force;
 
-                velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0f, 200f);
+                velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0f, MAX_VELOCITY_MAGNITUDE);
 
                 Rigidbody.AddForce(velocity);
             }
