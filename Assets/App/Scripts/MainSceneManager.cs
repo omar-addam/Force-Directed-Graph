@@ -15,8 +15,11 @@ public class MainSceneManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        // Display the app version
         DisplayVersion();
-        GenerateSample();        
+
+        // Generate a sample after 1 second to have a stable framerate
+        Invoke(nameof(GenerateSample), 1);
     }
 
     #endregion
