@@ -13,7 +13,7 @@ namespace ForceDirectedGraph
         /// <summary>
         /// The maximum value the node's velocity can be at any time.
         /// </summary>
-        private const float MAX_VELOCITY_MAGNITUDE = 500f;
+        private const float MAX_VELOCITY_MAGNITUDE = 400f;
 
         #endregion
 
