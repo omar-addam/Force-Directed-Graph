@@ -106,9 +106,14 @@ namespace ForceDirectedGraph
             {
                 Rigidbody.velocity = Vector3.zero;
 
+                Vector2 velocity = Vector2.zero;
                 if (Forces != null)
                     foreach (var force in Forces)
-                        Rigidbody.AddForce(force);
+                        velocity += force;
+
+                velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0f, 200f);
+
+                Rigidbody.AddForce(velocity);
             }
         }
 
