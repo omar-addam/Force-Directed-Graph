@@ -18,8 +18,8 @@ public class MainSceneManager : MonoBehaviour
         // Display the app version
         DisplayVersion();
 
-        // Generate a sample after 1 second to have a stable framerate
-        Invoke(nameof(GenerateSample), 1);
+        // Generate a sample after 3 seconds to have a stable framerate
+        Invoke(nameof(GenerateSample), 3);
     }
 
     #endregion
