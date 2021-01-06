@@ -11,12 +11,11 @@ namespace ForceDirectedGraph
 
         #region Constants
 
-#if !UNITY_EDITOR && UNITY_WEBGL
 
         /// <summary>
         /// The repulsion force between any two nodes.
         /// </summary>
-        private const float REPULSION_FORCE = 600f;
+        private const float REPULSION_FORCE = 40000f;
 
         /// <summary>
         /// The maximum distance for applying repulsion forces.
@@ -26,26 +25,7 @@ namespace ForceDirectedGraph
         /// <summary>
         /// The attraction force between any two nodes.
         /// </summary>
-        private const float ATTRACTION_FORCE = 600f;
-
-#else
-
-        /// <summary>
-        /// The repulsion force between any two nodes.
-        /// </summary>
-        private const float REPULSION_FORCE = 60f;
-
-        /// <summary>
-        /// The maximum distance for applying repulsion forces.
-        /// </summary>
-        private const float REPULSION_DISTANCE = 1.5f;
-
-        /// <summary>
-        /// The attraction force between any two nodes.
-        /// </summary>
-        private const float ATTRACTION_FORCE = 60f;
-
-#endif
+        private const float ATTRACTION_FORCE = 40000f;
 
         #endregion
 
@@ -245,6 +225,9 @@ namespace ForceDirectedGraph
         /// </summary>
         private void ApplyForces()
         {
+            if (GraphNodes == null)
+                return;
+
             // Stores all the forces to be applied to each node
             Dictionary<GraphNode, List<Vector2>> nodeForces = new Dictionary<GraphNode, List<Vector2>>();
             foreach (var node1 in GraphNodes.Values)
@@ -300,7 +283,7 @@ namespace ForceDirectedGraph
             float distanceForce = (REPULSION_DISTANCE - distance) / REPULSION_DISTANCE;
 
             // Compute repulsive force
-            return forceDirection * distanceForce * REPULSION_FORCE;
+            return forceDirection * distanceForce * REPULSION_FORCE * Time.deltaTime;
         }
 
         /// <summary>
@@ -312,7 +295,7 @@ namespace ForceDirectedGraph
             Vector2 forceDirection = (link.FirstNode.transform.position - link.SecondNode.transform.position).normalized;
 
             // Compute repulsive force
-            return forceDirection * link.Link.Width * ATTRACTION_FORCE;
+            return forceDirection * link.Link.Width * ATTRACTION_FORCE * Time.deltaTime;
         }
 
         #endregion

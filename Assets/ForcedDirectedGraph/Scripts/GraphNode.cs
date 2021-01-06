@@ -106,8 +106,9 @@ namespace ForceDirectedGraph
             {
                 Rigidbody.velocity = Vector3.zero;
 
-                foreach (var force in Forces)
-                    Rigidbody.AddForce(force);
+                if (Forces != null)
+                    foreach (var force in Forces)
+                        Rigidbody.AddForce(force);
             }
         }
 

@@ -9,21 +9,10 @@ namespace ForceDirectedGraph
 
         #region Constants
 
-#if !UNITY_EDITOR && UNITY_WEBGL
-
         /// <summary>
         /// Force applied when dragging objects.
         /// </summary>
-        private const float DRAGGING_FORCE = 100f;
-
-#else
-
-        /// <summary>
-        /// Force applied when dragging objects.
-        /// </summary>
-        private const float DRAGGING_FORCE = 10f;
-
-#endif
+        private const float DRAGGING_FORCE = 20000f;
 
         #endregion
 
@@ -87,7 +76,7 @@ namespace ForceDirectedGraph
 
             // Get the force vector
             Vector3 force = mousePosition - transform.position;
-            force *= DRAGGING_FORCE;
+            force *= DRAGGING_FORCE * Time.deltaTime;
 
             // Apply force
             Rigidbody.velocity = Vector3.zero;
