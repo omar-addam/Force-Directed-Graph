@@ -101,9 +101,9 @@ Graph.Initialize(network);
 
 * Line ending: CRLF
 * Case styles: Camel, Pascal, and Snake case
-  * Arguments, paramters, and local variables: camel case (e.g. iterationOrder)
-  * Global variables: pascal case (e.g. SeedItems)
-  * Constants and static variables: snake case (ALL CAPS) (e.g. ALGORITHM_NAME)
+  * Arguments, paramters, and local variables: camel case (e.g. graphNode)
+  * Global variables: pascal case (e.g. NodeTemplate)
+  * Constants and static variables: snake case (ALL CAPS) (e.g. REPULSION_FORCE)
 * Methods naming convention:
   * Pascal case (e.g. GenerateSample)
   * Verbs
@@ -115,7 +115,7 @@ Graph.Initialize(network);
 
 ### Assets / App
 
-* Contains all scripts and resources used in the demo.
+* Contains scripts, scenes, and all resources used to create the demo application.
 * Scripts are created under Assets/App/Scripts folder.
 
 ### Assets / Others
