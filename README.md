@@ -178,4 +178,9 @@ The graph node prefab also includes another script that allows the user to drag 
 
 ### GraphLink
 
+A *GraphLink* is used to to draw lines between nodes. It is used as a template by the graph component when displaying the connections between nodes.
+* Prefab: Assets/ForcedDirectedGraph/Prefabs/GraphLink.prefab
+* Script: Assets/ForcedDirectedGraph/Scripts/GraphLink.cs
+  * Initialize: sets the two *GraphNode* elements that should be connected.
+
 ### Graph
