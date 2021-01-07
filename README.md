@@ -9,6 +9,8 @@ A force-directed graph can be achieved by following two simple rules:
 * **Attraction** force is applied to connected nodes => pulling them toward each other.
 * **Repulsion** force is applied to disconnected nodes when they are in close proximity => pushing each other away.
 
+` For demo purposes, any node being dragged ignores all forces applied to it. `
+
 | Attraction | Repulsion |
 | :-----: | :-------: |
 | <img src="docs/Attraction.png" height="200" /> | <img src="docs/Repulsion.png" height="200" />   |
