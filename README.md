@@ -162,10 +162,19 @@ The data structure contains 3 classes as shown in the figure below.
   * Properties
     * **FirstNodeId**: id of the node connected to the link's head.
     * **SecondNodeId**: id of the node connected to the link's tail.
-    * **Width**: normalized weigh of the link [0-1]. The higher the value is, the closer the nodes get to each other.
+    * **Width**: normalized weight of the link [0-1]. The higher the value is, the closer the nodes get to each other.
     * **Color**: The color used when displaying the link.
 
 ### GraphNode
+
+A *GraphNode* represents a 2D circle on a graph. It is used as a template by the graph component when displaying the nodes.
+* Prefab: Assets/ForcedDirectedGraph/Prefabs/GraphNode.prefab
+* Script: Assets/ForcedDirectedGraph/Scripts/GraphNode.cs
+  * Initialize: sets the color and displayed name of the circle.
+  * ApplyForces: applies forces to the circle to set its position.
+
+The graph node prefab also includes another script that allows the user to drag the circle around. While dragging the circle, all applied forces get ignored.
+* Script: Assets/ForcedDirectedGraph/Scripts/Draggable.cs
 
 ### GraphLink
 
