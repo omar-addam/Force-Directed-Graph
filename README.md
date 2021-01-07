@@ -143,6 +143,28 @@ This folder contains an implementation of force-directed graph system that visua
 
 ### DataStructure
 
+The data structure contains 3 classes as shown in the figure below.
+
+![Simulation](docs/DataStructure.png)
+
+* **Network**: represents the social network being visualized in the graph.
+  * Properties
+    * **Nodes**: list of all nodes to be displayed.
+    * **Links**: list of all links that define the connections between the nodes.
+
+* **Node**: represents a single item in the graph.
+  * Properties
+    * **Id**: unique identifier used when linking nodes together.
+    * **Name**: displayed name of the node.
+    * **Color**: color used when representing the node.
+
+* **Link**: represents a single connection between two nodes.
+  * Properties
+    * **FirstNodeId**: id of the node connected to the link's head.
+    * **SecondNodeId**: id of the node connected to the link's tail.
+    * **Width**: normalized weigh of the link [0-1]. The higher the value is, the closer the nodes get to each other.
+    * **Color**: The color used when displaying the link.
+
 ### GraphNode
 
 ### GraphLink
