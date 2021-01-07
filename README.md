@@ -139,4 +139,12 @@ Graph.Initialize(network);
 
 ## Assets / ForcedDirectedGraph
 
-This folder contains an implementation of force-directed graph system that visualizes social networks. The system consists of three components plus the data structure.
+This folder contains an implementation of force-directed graph system that visualizes social networks. The system consists of three components in addition to the data structure.
+
+### DataStructure
+
+### GraphNode
+
+### GraphLink
+
+### Graph
