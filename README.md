@@ -184,3 +184,13 @@ A *GraphLink* is used to to draw lines between nodes. It is used as a template b
   * Initialize: sets the two *GraphNode* elements that should be connected.
 
 ### Graph
+
+A graph system that uses the two prefabs; *GraphNode* and *GraphLink*; to visualize a social network.
+* Prefab: Assets/Grid/Prefabs/Grid.prefab
+* Script: Assets/Grid/Scripts/Grid.cs
+  * Initialize: gets a network and displays it.
+  * Clear: deletes all nodes and links in the graph
+  * DisplayNodes: displays nodes on the graph.
+  * DisplayLinks: displays links on the graph.
+  * ShuffleNodes: applies random forces to the nodes.
+  * ApplyForces: computes and applies forces to nodes using two rules. It gets called once every frame.
