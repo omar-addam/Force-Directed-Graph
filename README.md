@@ -4,6 +4,15 @@ This project provides the implementation of force directed graph visualization. 
 
 ` IMPORTANT: The code is not optimized for handling large number of nodes. Instead, it takes advantage of Unity3d physics engine to create the visualization. `
 
+A force-directed graph can be achieved by following two simple rules:
+
+* **Attraction** force is applied to connected nodes => pulling them toward each other.
+* **Repulsion** force is applied to disconnected nodes when they are in close proximity => pushing each other away.
+
+| Attraction | Repulsion |
+| :-----: | :-------: |
+| <img src="docs/Attraction.png" height="200" /> | <img src="docs/Repulsion.png" height="200" />   |
+
 # Demo
 
 ![Simulation](docs/Simulation.gif)
