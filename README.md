@@ -123,3 +123,9 @@ Graph.Initialize(network);
 * All components should be included under Assets/\<Name> folder. (e.g. Assets/ForceDirectedGraph)
 * Each component should be isolated and under **NO CIRCUMSTANCES** referencing or using another component's scripts.
 * Components are **NOT** allowed to reference or call application/demo scripts.
+
+# Code Based Documentation
+
+## Assets / ForcedDirectedGraph
+
+This folder contains an implementation of force-directed graph system that visualizes social networks. The system consists of three components plus the data structure.
